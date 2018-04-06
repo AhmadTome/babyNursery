@@ -16,7 +16,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/', function () {
-    return view('admin_MainPage');
+    return view('login');
 });
 
 Route::get('/addEvent', function () {
