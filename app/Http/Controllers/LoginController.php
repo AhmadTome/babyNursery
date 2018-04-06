@@ -93,9 +93,12 @@ $users=user::where('email', '=', $email)->where('password', '=', $pass)
     ->where('type', '=', $user)->get();
 
 if(count($users) > 0 && $user=="admin"){
+
     return redirect()->to('/addEvent');
 
 }else if(count($users) > 0 && $user=="parent"){
+    session(['useremail' => $email]);
+   // return  session('useremail');
     return redirect()->to('/ShowEvents');
 } else{
     return redirect()->to('/login');

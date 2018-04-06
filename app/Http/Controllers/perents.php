@@ -37,6 +37,11 @@ class perents extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate($request,[
+            'Parentemail' => 'required|unique:perents,email'
+        ]);
+
         $user=new perent;
         $user->Id=Input::get('ParentId');
         $user->email=Input::get('Parentemail');

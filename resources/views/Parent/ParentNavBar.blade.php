@@ -64,7 +64,6 @@
 
 <div class="topnav" id="myTopnav">
     <a href="{{ asset('ShowEvents') }}" class="active">Show Events </a>
-    <a href="{{ asset('') }}">Show Messages </a>
     <a href="{{ asset('ParentInfo') }}">Show Parent Info </a>
     <a href="{{ asset('ChildInfo') }}">Show Child Info </a>
     <a href="{{ asset('') }}">Show Selected Events </a>

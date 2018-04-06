@@ -33,7 +33,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent ID :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ParentId" name="ParentId" readonly>
+                        <input type="text" class="form-control" id="ParentId" name="ParentId" value="{{$specficParent[0]->Id}}" readonly>
                     </div>
                 </div>
 
@@ -41,7 +41,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent Name :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ParentName" name="ParentName" readonly>
+                        <input type="text" class="form-control" id="ParentName" name="ParentName" value="{{$specficParent[0]->name}}" readonly>
                     </div>
                 </div>
 
@@ -49,7 +49,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent age :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentage" name="Parentage" readonly>
+                        <input type="text" class="form-control" id="Parentage" name="Parentage" value="{{$specficParent[0]->age}}" readonly>
                     </div>
                 </div>
 
@@ -57,7 +57,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent email :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentemail" name="Parentemail" readonly>
+                        <input type="text" class="form-control" id="Parentemail" name="Parentemail" value="{{$specficParent[0]->email}}" readonly>
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent phone :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentphone" name="Parentphone" readonly>
+                        <input type="text" class="form-control" id="Parentphone" name="Parentphone" value="{{$specficParent[0]->phone}}" readonly>
                     </div>
                 </div>
 
@@ -73,17 +73,11 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent address :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentaddress" name="Parentaddress" readonly>
+                        <input type="text" class="form-control" id="Parentaddress" name="Parentaddress" value="{{$specficParent[0]->address}}" readonly>
                     </div>
                 </div>
 
-                <div class="form-group row" dir="ltr">
-                    <label class="control-label col-sm-3 pull-left text-left">Parent password :</label>
 
-                    <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentpassword" name="Parentpassword" readonly>
-                    </div>
-                </div>
 
 
 

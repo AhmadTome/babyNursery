@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/addEvent', function () {
+
     return view('addEvent');
 });
 
@@ -51,7 +52,12 @@ Route::get('/ChildInfo', function () {
 });
 
 Route::get('/ParentInfo', function () {
-    return view('Parent.ParentInfo');
+
+$email=session('useremail');
+
+    $specficParent=\App\perent::select('Id','email','name','age','phone','address')
+        ->where('email',$email)->take(1)->get();
+    return view('Parent.ParentInfo')->with('specficParent',$specficParent);
 });
 
 Route::get('/ShowEvents', function () {
