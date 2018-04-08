@@ -18,37 +18,70 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return view('login');
 });
-
+Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::get('/addEvent', function () {
-
+if(session()->has('useremail')){
     return view('addEvent');
+}else{
+    return view('login');
+}
 });
 
 Route::get('/addChildren', function () {
     $parent=\App\perent::all();
-    return view('addChildren')->with('parent',$parent);
+    if(session()->has('useremail')) {
+        return view('addChildren')->with('parent', $parent);
+    }else{
+        return view('login');
+    }
 });
 
 Route::get('/addParent', function () {
-    return view('addParent');
+    if(session()->has('useremail')) {
+        return view('addParent');
+    }else{
+        return view('login');
+    }
 });
 
 Route::get('/sendMessage', function () {
     $parent=\App\perent::all();
-    return view('SendMessage')->with('parent',$parent);
+    if(session()->has('useremail')) {
+        return view('SendMessage')->with('parent', $parent);
+    }else{
+        return view('login');
+    }
 });
 
 Route::get('/AddInfo', function () {
-    return view('addinfo');
+    if(session()->has('useremail')) {
+        return view('addinfo');
+    }else{
+        return view('login');
+    }
 });
 
 Route::get('/EditInfo', function () {
     $info=\App\admin::all();
-    return view('EditInfo')->with('info',$info);
+    if(session()->has('useremail')) {
+        return view('EditInfo')->with('info', $info);
+    }else{
+        return view('login');
+    }
 });
 
 Route::get('/ChildInfo', function () {
-    return view('Parent.childinfo');
+    $email=session('useremail');
+
+    $specficParent=\App\perent::select('Id','name')
+        ->where('email',$email)->take(1)->get();
+
+    $specficchild=\App\child::select('id','name','gender','bdate','arrivingtime')
+        ->where('perent_id',$specficParent[0]->Id)->take(1)->get();
+if(count($specficchild) > 0)
+    return view('Parent.childinfo')->with('specficchild',$specficchild)->with('parentname',$specficParent[0]->name);
+else
+    return "This Parent not have a child registered before";
 });
 
 Route::get('/ParentInfo', function () {
@@ -57,14 +90,34 @@ $email=session('useremail');
 
     $specficParent=\App\perent::select('Id','email','name','age','phone','address')
         ->where('email',$email)->take(1)->get();
-    return view('Parent.ParentInfo')->with('specficParent',$specficParent);
+    if(session()->has('useremail')) {
+        return view('Parent.ParentInfo')->with('specficParent', $specficParent);
+    }else{
+        return view('login');
+    }
 });
 
 Route::get('/ShowEvents', function () {
     $enentcontent=\App\event::all();
-    return view('Parent.ShowEvents')->with('enentcontent',$enentcontent);
+    if(session()->has('useremail')) {
+        return view('Parent.ShowEvents')->with('enentcontent', $enentcontent);
+    }else{
+        return view('login');
+    }
 });
+Route::get('/SelectedEvents', function () {
+    $email=session('useremail');
+    $specficParent=\App\perent::select('Id')
+        ->where('email',$email)->take(1)->get();
+    $parentid=$specficParent[0]->Id;
 
+    $selectedenevt=\Illuminate\Support\Facades\DB::select("select * from events where ID in (select distinct eventid from eventregistered where parentid=$parentid)");
+    if(session()->has('useremail')) {
+        return view('Parent.selectedEvent')->with('selectedenevt', $selectedenevt);
+    }else{
+        return view('login');
+    }
+});
 // Actions
 
 Route::post('login','LoginController@login');
@@ -73,6 +126,12 @@ Route::post('SaveChildren','Childrens@store');
 Route::post('Saveadmin','adminController@store');
 Route::post('EditInformation','adminController@edit');
 Route::post('SaveEvent','EventController@store');
+
+Route::get('/enrollment','EventController@enroll');
+Route::get('/selectregiteredEvent','EventController@selectregisteredEvent');
+Route::get('/parentname','perents@getname');
+Route::get('/adminname','adminController@getname');
+Route::get('/logout','LoginController@logout');
 
 
 Route::post('/sendmail', function (\Illuminate\Http\Request $request,\Illuminate\Mail\Mailer $mailer) {
@@ -94,3 +153,4 @@ Route::post('/sendmail', function (\Illuminate\Http\Request $request,\Illuminate
     return redirect()->back();
 })->name('sendmail');
 
+});

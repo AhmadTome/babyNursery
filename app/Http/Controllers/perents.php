@@ -109,4 +109,11 @@ class perents extends Controller
     {
         //
     }
+    public function getname(Request $request){
+        $parentemail=session('useremail');
+        $parentidquery=perent::select('name')
+            ->where('email',$parentemail)->take(1)->get();
+        $parentname=$parentidquery[0]->name;
+        return $parentname;
+    }
 }

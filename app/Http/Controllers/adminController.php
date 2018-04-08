@@ -118,4 +118,10 @@ admin::truncate();
     {
         //
     }
+    public function getname(Request $request){
+        $adminquery=admin::select('name')
+            ->take(1)->get();
+
+        return $adminquery[0]->name;
+    }
 }

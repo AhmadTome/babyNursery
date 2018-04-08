@@ -66,7 +66,9 @@
     <a href="{{ asset('ShowEvents') }}" class="active">Show Events </a>
     <a href="{{ asset('ParentInfo') }}">Show Parent Info </a>
     <a href="{{ asset('ChildInfo') }}">Show Child Info </a>
-    <a href="{{ asset('') }}">Show Selected Events </a>
+    <a href="{{ asset('SelectedEvents') }}">Show Selected Events </a>
+    <a href="{{ asset('login') }}" class="logout" style="float: right">Logout</a>
+    <a class="parentname" style="float: right"></a>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
@@ -83,6 +85,41 @@
             x.className = "topnav";
         }
     }
+
+
+    $(document).ready(function () {
+        $(".parentname").empty();
+        var parentname;
+        $.ajax({
+
+            type:'get',
+            url:'{!!URL::to('parentname')!!}',
+            data:{},
+            success:function(data) {
+                parentname=data;
+            },
+            async: false
+
+        });
+
+        $(".parentname").append(parentname);
+
+
+        $(".logout").on('click',function() {
+
+            $.ajax({
+                type:'get',
+                url:'{!!URL::to('logout')!!}',
+                data:{},
+                success:function(data) {
+
+                }
+
+            });
+
+
+        });
+    });
 </script>
 
 </body>

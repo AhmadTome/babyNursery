@@ -33,7 +33,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Children ID :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ChildrenId" name="ChildrenId" readonly>
+                        <input type="text" class="form-control" id="ChildrenId" name="ChildrenId" value="{{$specficchild[0]->id}}" readonly>
                     </div>
                 </div>
 
@@ -41,28 +41,23 @@
                     <label class="control-label col-sm-3 pull-left text-left">Children Name :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ChildrenName" name="ChildrenName" readonly>
+                        <input type="text" class="form-control" id="ChildrenName" name="ChildrenName" value="{{$specficchild[0]->name}}" readonly>
                     </div>
                 </div>
 
                 <div class="form-group row" dir="ltr">
                     <label class="control-label col-sm-3 pull-left text-left">Children Gender :</label>
-
                     <div class="col-sm-6 pull-left">
-                        <div class="radio">
-                            <label><input type="radio" name="gender" value="male" readonly>Male</label>
-                        </div>
-                        <div class="radio">
-                            <label><input type="radio" name="gender" value="female" readonly>Female</label>
-                        </div>
+                        <input type="text" class="form-control" id="Childrengender" name="Childrengender" value="{{$specficchild[0]->gender}}" readonly>
                     </div>
+
                 </div>
 
                 <div class="form-group row" dir="ltr">
                     <label class="control-label col-sm-3 pull-left text-left" >Birth Day :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="date" class="form-control" id="childBirthDay" name="childBirthDay" readonly >
+                        <input type="date" class="form-control" id="childBirthDay" name="childBirthDay" value="{{$specficchild[0]->bdate}}" readonly >
                     </div>
                 </div>
 
@@ -70,18 +65,16 @@
                     <label class="control-label col-sm-3 pull-left text-left">Arriving Time :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="date" class="form-control" id="ArravingTime" name="ArravingTime" readonly>
+                        <input type="date" class="form-control" id="ArravingTime" name="ArravingTime" value="{{$specficchild[0]->arrivingtime}}" readonly>
                     </div>
                 </div>
 
                 <div class="form-group row" dir="ltr">
                     <label class="control-label col-sm-3 pull-left text-left">Parent :</label>
-
                     <div class="col-sm-6 pull-left">
-                        <select class="form-control" id="Parent_select" readonly>
-
-                        </select>
+                        <input type="text" class="form-control" id="childParent" name="childParent" value="{{$parentname}}" readonly>
                     </div>
+
                 </div>
 
 

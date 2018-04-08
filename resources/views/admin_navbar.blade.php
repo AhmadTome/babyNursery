@@ -67,8 +67,10 @@
     <a href="{{ asset('addParent') }}">Add Parent</a>
     <a href="{{ asset('addChildren') }}">Add Children</a>
     <a href="{{ asset('sendMessage') }}">Send Message</a>
-    <a href="{{ asset('AddInfo') }}">Add new Admin</a>
+   <!-- <a href="{{ asset('AddInfo') }}">Add new Admin</a> -->
     <a href="{{ asset('EditInfo') }}">Edit Info</a>
+    <a href="{{ asset('login') }}" class="logout" style="float: right">Logout</a>
+    <a class="adminname" style="float: right"></a>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
 </div>
 
@@ -77,6 +79,8 @@
 </div>
 
 <script>
+
+
     function myFunction() {
         var x = document.getElementById("myTopnav");
         if (x.className === "topnav") {
@@ -85,6 +89,48 @@
             x.className = "topnav";
         }
     }
+
+    $(document).ready(function () {
+        $(".adminname").empty();
+        var adminname;
+        $.ajax({
+
+            type:'get',
+            url:'{!!URL::to('adminname')!!}',
+            data:{},
+            success:function(data) {
+                adminname=data;
+            },
+            async: false
+
+        });
+
+        $(".adminname").append(adminname);
+
+        $(".logout").on('click',function() {
+
+                $.ajax({
+                    type:'get',
+                    url:'{!!URL::to('logout')!!}',
+                    data:{},
+                    success:function(data) {
+
+                    }
+
+                });
+
+
+        });
+
+
+
+
+
+
+
+
+    });
+
 </script>
 
 </body>

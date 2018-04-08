@@ -93,7 +93,7 @@ $users=user::where('email', '=', $email)->where('password', '=', $pass)
     ->where('type', '=', $user)->get();
 
 if(count($users) > 0 && $user=="admin"){
-
+    session(['useremail' => "admin"]);
     return redirect()->to('/addEvent');
 
 }else if(count($users) > 0 && $user=="parent"){
@@ -105,5 +105,10 @@ if(count($users) > 0 && $user=="admin"){
 }
 
 
+    }
+
+    public function logout(Request $request){
+        $request->session()->forget('useremail');
+        return redirect()->to('/login');
     }
 }

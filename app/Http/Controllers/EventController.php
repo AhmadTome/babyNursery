@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\event;
+use App\eventregistered;
+use App\perent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 
@@ -109,5 +111,35 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function enroll(Request $request){
+
+    $eventid=$request->eventid;
+
+    $parentemail=session('useremail');
+    $parentidquery=perent::select('Id')
+        ->where('email',$parentemail)->take(1)->get();
+    $parentid=$parentidquery[0]->Id;
+
+
+    $user=new eventregistered;
+    $user->eventid=$eventid;
+    $user->parentid=$parentid;
+    $user->save();
+
+    }
+
+    public function selectregisteredEvent(Request $request){
+
+        $parentemail=session('useremail');
+        $parentidquery=perent::select('Id')
+            ->where('email',$parentemail)->take(1)->get();
+        $parentid=$parentidquery[0]->Id;
+
+        $data = eventregistered::select('eventid')
+            ->where('parentid',$parentid)->take(1000)->get();
+        return $data;
     }
 }

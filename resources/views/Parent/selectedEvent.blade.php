@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Events</title>
+    <title>Selected Events</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="icon" type="image/ico" href="{{ asset('img/photo2.png') }}">
     <link href="{{ asset('css/AdminCss/SuperadminStyles.css') }}" rel="stylesheet">
@@ -8,6 +8,7 @@
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
+    <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 
@@ -20,7 +21,7 @@
 <div class="BodyDiv col-lg-12 col-md-12 col-xs-12 col-sm-12 " >
 
     <div class="panel panel-default">
-        <div class="panel-heading text-center PanelHeadingCss">Events</div>
+        <div class="panel-heading text-center PanelHeadingCss">Selected Events</div>
         <div class="panel-body PanelBodyCss">
 
 
@@ -28,44 +29,40 @@
                 {{ csrf_field() }}
 
 
-                @foreach($enentcontent as $item)
+                @foreach($selectedenevt as $item)
                     <div class="well col-lg-4 " style="margin-bottom: 10px">
-                    <aside>
-                        <div class="well content-title ">
-                            <div class="text-center">
-                                <h3>{{$item->event_name}}</h3>
-                            </div>
-                        </div>
-                        <img  src="{{$item->img_path}}" style="height: 50%; width: 100%;"  class=" img-responsive">
-                        <div class="well" style="width: 100%;height: 20%">
-                            <section>
-                                <p>{{$item->description}}</p>
-                            </section>
-                        </div>
-                        <div class=" col-sm-12">
-
-                            <div class=" content-title col-sm-4">
-                                <div class=" text-center">
-                                    <h5>{{$item->date}}</h5>
+                        <aside>
+                            <div class="well content-title ">
+                                <div class="text-center">
+                                    <h3>{{$item->event_name}}</h3>
                                 </div>
                             </div>
-
-                            <div class="content-title col-sm-4">
-                                <div class=" text-center">
-                                    <h5>{{$item->location}}</h5>
-                                </div>
+                            <img  src="{{$item->img_path}}" style="height: 50%; width: 100%;"  class=" img-responsive">
+                            <div class="well" style="width: 100%;height: 20%">
+                                <section>
+                                    <p>{{$item->description}}</p>
+                                </section>
                             </div>
-                            <div class="content-title col-sm-4">
-                                <div class=" text-center" >
-                                    <input type="button"  class="btn btn-primary enroll" value="Enrollment" data-id="{{$item->ID}}">
-                                </div>
-                            </div>
+                            <div class=" col-sm-12">
 
-                        </div>
-                    </aside>
+                                <div class=" content-title col-sm-6">
+                                    <div class=" text-center">
+                                        <h5>{{$item->date}}</h5>
+                                    </div>
+                                </div>
+
+                                <div class="content-title col-sm-6">
+                                    <div class=" text-center">
+                                        <h5>{{$item->location}}</h5>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </aside>
                     </div>
 
-                    @endforeach
+                @endforeach
 
 
             </form>
@@ -85,7 +82,7 @@
 </body>
 </html>
 <style>
-     .displaylable {
+    .displaylable {
         display:inline-block;
         padding-top:0;
         padding-bottom:0;
@@ -163,69 +160,3 @@
     .social-icon a:nth-of-type(4){color:#CA3737;}
     .social-icon a:nth-of-type(5){color:#3A3A3A;}
 </style>
-<script>
-
-$(document).ready(function () {
-    var eventid;
-
-
-    $(".enroll").each(function () {
-
-        var check=[1,2];
-        $.ajax({
-
-            type:'get',
-            url:'{!!URL::to('selectregiteredEvent')!!}',
-            data:{'eventid':eventid},
-            success:function(data) {
-                check =data;
-console.log("ajax")
-              //  alert(check.length)
-            },
-            async: false
-
-        });
-       // console.log("after ajax")
-        //alert(check.length)
-        for(var i=0;i<check.length;i++){
-        //    console.log(check[i] == $(this).data('id')+"\n")
-
-            if(check[i].eventid == $(this).data('id') ){
-                $(this).val("done");
-                $(this).delay(4000).css("background-color","green");
-            }
-        }
-
-
-    });
-
-
-
-
-
-    $(".enroll").on('click',function() {
-        $(this).each(function() {
-            var term = $(this).data('id');
-            $(this).val("done");
-            $(this).delay(4000).css("background-color","green");
-
-            eventid=term;
-
-            $.ajax({
-
-                type:'get',
-                url:'{!!URL::to('enrollment')!!}',
-                data:{'eventid':eventid},
-                success:function(data) {
-
-                }
-
-            });
-
-        });
-    });
-
-});
-
-
-</script>
