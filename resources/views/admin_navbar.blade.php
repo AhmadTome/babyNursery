@@ -65,7 +65,9 @@
 <div class="topnav" id="myTopnav">
     <a href="{{ asset('addEvent') }}" class="active">Add Event</a>
     <a href="{{ asset('addParent') }}">Add Parent</a>
+    <a href="{{ asset('EditParent') }}">Enquiry and Delete Parent</a>
     <a href="{{ asset('addChildren') }}">Add Children</a>
+    <a href="{{ asset('EditChild') }}">Enquiry and Delete Children</a>
     <a href="{{ asset('sendMessage') }}">Send Message</a>
    <!-- <a href="{{ asset('AddInfo') }}">Add new Admin</a> -->
     <a href="{{ asset('EditInfo') }}">Edit Info</a>

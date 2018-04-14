@@ -54,7 +54,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent email :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="email" class="form-control" id="Parentemail" name="Parentemail" >
+                        <input type="email" class="form-control" id="Parentemail" name="Parentemail" required>
                     </div>
                 </div>
 
@@ -62,7 +62,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent password :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentpassword" name="Parentpassword" >
+                        <input type="text" class="form-control" id="Parentpassword" name="Parentpassword" required>
                     </div>
                 </div>
 
@@ -70,7 +70,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent ID :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ParentId" name="ParentId" >
+                        <input type="text" class="form-control" id="ParentId" name="ParentId" required>
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent Name :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ParentName" name="ParentName" >
+                        <input type="text" class="form-control" id="ParentName" name="ParentName" required>
                     </div>
                 </div>
 
@@ -86,7 +86,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent age :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentage" name="Parentage" >
+                        <input type="text" class="form-control" id="Parentage" name="Parentage" required>
                     </div>
                 </div>
 
@@ -96,7 +96,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent phone :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentphone" name="Parentphone" >
+                        <input type="text" class="form-control" id="Parentphone" name="Parentphone" required>
                     </div>
                 </div>
 
@@ -104,7 +104,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Parent address :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Parentaddress" name="Parentaddress" >
+                        <input type="text" class="form-control" id="Parentaddress" name="Parentaddress" required>
                     </div>
                 </div>
 

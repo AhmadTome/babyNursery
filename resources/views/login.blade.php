@@ -20,6 +20,9 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <div class="container">
+    <div class="pull-left" style="margin-top: 15px">
+    <a href="{{ asset('home')}}">Home</a>
+    </div>
     <div class="row vertical-offset-100">
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">

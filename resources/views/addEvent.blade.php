@@ -45,7 +45,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Event ID :</label>
 
                     <div class="col-sm-6 pull-left">
-                      <input type="text" class="form-control" id="EventId" name="EventId">
+                      <input type="text" class="form-control" id="EventId" name="EventId" required>
                     </div>
                 </div>
 
@@ -53,7 +53,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Event Name :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Eventname" name="Eventname">
+                        <input type="text" class="form-control" id="Eventname" name="Eventname" required>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Event Date :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="date" class="form-control" id="Eventdate" name="Eventdate">
+                        <input type="date" class="form-control" id="Eventdate" name="Eventdate" required>
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Event Location :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Eventlocation" name="Eventlocation">
+                        <input type="text" class="form-control" id="Eventlocation" name="Eventlocation" required >
 
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Event Description :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <textarea class="form-control" id="EventDescription" name="EventDescription" rows="5" cols="5"></textarea>
+                        <textarea class="form-control" id="EventDescription" name="EventDescription" rows="5" cols="5" required></textarea>
                     </div>
                 </div>
 

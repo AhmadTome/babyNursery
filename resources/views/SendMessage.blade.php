@@ -46,7 +46,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Message Subject :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="subject" name="subject">
+                        <input type="text" class="form-control" id="subject" name="subject" required>
                     </div>
                 </div>
 
@@ -54,7 +54,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Message Content :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <textarea class="form-control" rows="7" cols="5" id="title" name="title"></textarea>
+                        <textarea class="form-control" rows="7" cols="5" id="title" name="title" required></textarea>
                     </div>
                 </div>
 
@@ -82,3 +82,13 @@
 
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $("#mail").select2({
+            dropdownAutoWidth : true,
+            theme: "classic"
+        });
+    });
+
+
+</script>

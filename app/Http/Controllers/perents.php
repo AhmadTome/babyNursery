@@ -82,9 +82,35 @@ class perents extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $num = Input::get('Parent_select');
+        $parentquery=perent::select('email')->where('Id',$num)->take(1)->get();
+        $email=$parentquery[0]->email;
+
+        perent::where('Id','=',$num)->delete();
+        user::where('email','=',$email)->delete();
+
+
+        $user=new perent;
+        $user->Id=Input::get('ParentId');
+        $user->email=Input::get('Parentemail');
+        $user->password=Input::get('Parentpassword');
+        $user->name=Input::get('ParentName');
+        $user->age=Input::get('Parentage');
+        $user->phone=Input::get('Parentphone');
+        $user->address=Input::get('Parentaddress');
+        if($user->save()){
+            session()->flash("notif","The Parent Info Edited Successfully ");
+        }else{
+            session()->flash("notif","something that be wrong");
+        }
+        $user2=new user;
+        $user2->email=Input::get('Parentemail');
+        $user2->password=Input::get('Parentpassword');
+        $user2->type="parent";
+        $user2->save();
+        return redirect()->to('/EditParent');
     }
 
     /**
@@ -105,9 +131,13 @@ class perents extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->id;
+        $parentquery=perent::select('email')->where('Id',$num)->take(1)->get();
+        $email=$parentquery[0]->email;
+        user::where('email','=',$email)->delete();
+        perent::where('Id','=',$num)->delete();
     }
     public function getname(Request $request){
         $parentemail=session('useremail');
@@ -115,5 +145,11 @@ class perents extends Controller
             ->where('email',$parentemail)->take(1)->get();
         $parentname=$parentidquery[0]->name;
         return $parentname;
+    }
+
+    public function getinfo(Request $request){
+        $date=perent::select('email','password','name','age','phone','address','Id')
+            ->where('Id',$request->parentid)->take(1)->get();
+        return $date ;
     }
 }

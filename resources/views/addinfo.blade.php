@@ -44,7 +44,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Admin email :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="email" class="form-control" id="AdminEmail" name="AdminEmail">
+                        <input type="email" class="form-control" id="AdminEmail" name="AdminEmail" required>
                     </div>
                 </div>
 
@@ -52,7 +52,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Admin password :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="password" class="form-control" id="AdminPassword" name="AdminPassword">
+                        <input type="password" class="form-control" id="AdminPassword" name="AdminPassword" required>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Admin Name :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="AdminName" name="AdminName">
+                        <input type="text" class="form-control" id="AdminName" name="AdminName" required>
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Admin phone :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Adminphone" name="Adminphone">
+                        <input type="text" class="form-control" id="Adminphone" name="Adminphone" required>
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Admin address :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="AdminAddress" name="AdminAddress">
+                        <input type="text" class="form-control" id="AdminAddress" name="AdminAddress" required>
                     </div>
                 </div>
 

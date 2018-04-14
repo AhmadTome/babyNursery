@@ -36,6 +36,17 @@ class Childrens extends Controller
      */
     public function store(Request $request)
     {
+
+        if ($request->hasFile('ChildImage')) {
+            $image = $request->file('ChildImage');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+
+
+        }
+
+
         $user=new child;
         $user->id=Input::get('ChildrenId');
         $user->name=Input::get('ChildrenName');
@@ -44,6 +55,7 @@ class Childrens extends Controller
         $user->arrivingtime=Input::get('ArravingTime');
         $user->perent_id=Input::get('Parent_select');
 
+        $user->clildimg="/images/".$name;;
 
         if($user->save()){
             session()->flash("notif","The Child Added Successfully ");
@@ -71,9 +83,18 @@ class Childrens extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $num = Input::get('Children_select');
+
+        child::where('id', '=', $num)
+            ->update(array('id' =>Input::get('ChildrenId') , 'name'=>Input::get('ChildrenName') ,'gender'=>Input::get('genderhidden')
+            , 'bdate'=>Input::get('childBirthDay') , 'arrivingtime'=>Input::get('ArravingTime')));
+        return redirect()->to('/EditChild');
+
+
+
+
     }
 
     /**
@@ -94,8 +115,15 @@ class Childrens extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $num = $request->id;
+        child::where('id','=',$num)->delete();
+    }
+
+    public function getinfo(Request $request){
+        $date=child::select('id','name','gender','bdate','arrivingtime')
+            ->where('id',$request->childid)->take(1)->get();
+        return $date ;
     }
 }

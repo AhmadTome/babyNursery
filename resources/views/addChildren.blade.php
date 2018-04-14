@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
     <link href="/select2-bootstrap-theme/select2-bootstrap.min.css" type="text/css" rel="stylesheet" />
+
 </head>
 <body>
 
@@ -37,7 +38,7 @@
         <div class="panel-body PanelBodyCss">
 
 
-            <form class="form-horizontal"  method="post" action="SaveChildren">
+            <form class="form-horizontal" enctype="multipart/form-data"  method="post" action="SaveChildren">
                 {{ csrf_field() }}
 
 
@@ -45,7 +46,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Children ID :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ChildrenId" name="ChildrenId">
+                        <input type="text" class="form-control" id="ChildrenId" name="ChildrenId" required>
                     </div>
                 </div>
 
@@ -53,7 +54,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Children Name :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ChildrenName" name="ChildrenName">
+                        <input type="text" class="form-control" id="ChildrenName" name="ChildrenName" required>
                     </div>
                 </div>
 
@@ -74,7 +75,7 @@
                     <label class="control-label col-sm-3 pull-left text-left">Birth Day :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="date" class="form-control" id="childBirthDay" name="childBirthDay">
+                        <input type="date" class="form-control" id="childBirthDay" name="childBirthDay" required>
                     </div>
                 </div>
 
@@ -82,10 +83,16 @@
                     <label class="control-label col-sm-3 pull-left text-left">Arriving Time :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="date" class="form-control" id="ArravingTime" name="ArravingTime">
+                        <input type="date" class="form-control" id="ArravingTime" name="ArravingTime" required>
                     </div>
                 </div>
+                <div class="form-group row" dir="ltr">
+                    <label class="control-label col-sm-3 pull-left text-left">Child Image :</label>
 
+                    <div class="col-sm-6 pull-left">
+                        <input class="form-control image" type="file" name="ChildImage" id="ChildImage" value="select a image"  />
+                    </div>
+                </div>
                 <div class="form-group row" dir="ltr">
                     <label class="control-label col-sm-3 pull-left text-left">Parent :</label>
 
@@ -99,6 +106,7 @@
                         </select>
                     </div>
                 </div>
+
 
 
 
@@ -126,3 +134,13 @@
 
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $("#Parent_select").select2({
+            dropdownAutoWidth : true,
+            theme: "classic"
+        });
+    });
+
+
+</script>

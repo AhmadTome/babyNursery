@@ -16,7 +16,23 @@ Route::get('/login', function () {
 });
 
 Route::get('/', function () {
-    return view('login');
+    $eventcontent=\App\event::all();
+    return view('Home')->with('eventcontent',$eventcontent);
+});
+Route::get('/about', function () {
+    return view('about');
+});
+Route::get('/home', function () {
+    $eventcontent=\App\event::all();
+    return view('Home')->with('eventcontent',$eventcontent);
+});
+Route::get('/galary', function () {
+    $child=\App\child::all();
+    return view('galary')->with('child',$child);
+});
+Route::get('/about', function () {
+
+    return view('about');
 });
 Route::group(['middleware' => 'preventBackHistory'],function(){
 Route::get('/addEvent', function () {
@@ -118,6 +134,32 @@ Route::get('/SelectedEvents', function () {
         return view('login');
     }
 });
+    Route::get('/EditParent', function () {
+        $parent=\App\perent::all();
+        if(count($parent) == 0){
+            return "you have No Parent ";
+        }
+        else if(session()->has('useremail')) {
+            return view('EditParent')->with('parent',$parent);
+        }else{
+            return view('login');
+        }
+    });
+
+    Route::get('/EditChild', function () {
+        $child=\App\child::all();
+        $parent=\App\perent::all();
+        if(count($child) == 0){
+            return "you have No child ";
+        }
+        else if(session()->has('useremail')) {
+            return view('EditChild')->with('child',$child)->with('parent',$parent);
+        }else{
+            return view('login');
+        }
+    });
+
+
 // Actions
 
 Route::post('login','LoginController@login');
@@ -126,12 +168,21 @@ Route::post('SaveChildren','Childrens@store');
 Route::post('Saveadmin','adminController@store');
 Route::post('EditInformation','adminController@edit');
 Route::post('SaveEvent','EventController@store');
+Route::post('EditParentInfo','perents@edit');
+Route::post('EditChildren','Childrens@edit');
+
+
 
 Route::get('/enrollment','EventController@enroll');
 Route::get('/selectregiteredEvent','EventController@selectregisteredEvent');
 Route::get('/parentname','perents@getname');
 Route::get('/adminname','adminController@getname');
 Route::get('/logout','LoginController@logout');
+Route::get('/getParentInfo','perents@getinfo');
+Route::get('/deleteParent','perents@destroy');
+Route::get('/getchildInfo','Childrens@getinfo');
+Route::get('/deletechild','Childrens@destroy');
+
 
 
 Route::post('/sendmail', function (\Illuminate\Http\Request $request,\Illuminate\Mail\Mailer $mailer) {
