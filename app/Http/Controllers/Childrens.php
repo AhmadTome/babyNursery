@@ -122,8 +122,14 @@ class Childrens extends Controller
     }
 
     public function getinfo(Request $request){
-        $date=child::select('id','name','gender','bdate','arrivingtime')
-            ->where('id',$request->childid)->take(1)->get();
+        $date=child::select('id','name','gender','bdate','arrivingtime','clildimg')
+            ->where('id',$request->childid)->take(100)->get();
         return $date ;
     }
+ public function getchild(Request $request){
+     $date=child::select('id','name','gender','bdate','arrivingtime','clildimg')
+         ->where('id',$request->id)->take(100)->get();
+     return $date ;
+ }
+
 }

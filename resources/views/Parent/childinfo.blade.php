@@ -27,13 +27,23 @@
 
             <form class="form-horizontal"  method="post" action="SaveChildren">
                 {{ csrf_field() }}
+                <div class="form-group row" dir="ltr">
+                    <label class="control-label col-sm-3 pull-left text-left">child :</label>
+                <div class="col-sm-6 pull-left">
+                    <select class="form-control" id="child_select" name="child_select">
+                        <option selected disabled>-- please select child -- </option>
+                        @foreach($specficchild as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
 
-
+                        @endforeach
+                    </select>
+                </div>
+                </div>
                 <div class="form-group row" dir="ltr">
                     <label class="control-label col-sm-3 pull-left text-left">Children ID :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ChildrenId" name="ChildrenId" value="{{$specficchild[0]->id}}" readonly>
+                        <input type="text" class="form-control" id="ChildrenId" name="ChildrenId" value="" readonly>
                     </div>
                 </div>
 
@@ -41,14 +51,14 @@
                     <label class="control-label col-sm-3 pull-left text-left">Children Name :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="ChildrenName" name="ChildrenName" value="{{$specficchild[0]->name}}" readonly>
+                        <input type="text" class="form-control" id="ChildrenName" name="ChildrenName" value="" readonly>
                     </div>
                 </div>
 
                 <div class="form-group row" dir="ltr">
                     <label class="control-label col-sm-3 pull-left text-left">Children Gender :</label>
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="Childrengender" name="Childrengender" value="{{$specficchild[0]->gender}}" readonly>
+                        <input type="text" class="form-control" id="Childrengender" name="Childrengender" value="" readonly>
                     </div>
 
                 </div>
@@ -57,7 +67,7 @@
                     <label class="control-label col-sm-3 pull-left text-left" >Birth Day :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="date" class="form-control" id="childBirthDay" name="childBirthDay" value="{{$specficchild[0]->bdate}}" readonly >
+                        <input type="date" class="form-control" id="childBirthDay" name="childBirthDay" value="" readonly >
                     </div>
                 </div>
 
@@ -65,14 +75,14 @@
                     <label class="control-label col-sm-3 pull-left text-left">Arriving Time :</label>
 
                     <div class="col-sm-6 pull-left">
-                        <input type="date" class="form-control" id="ArravingTime" name="ArravingTime" value="{{$specficchild[0]->arrivingtime}}" readonly>
+                        <input type="date" class="form-control" id="ArravingTime" name="ArravingTime" value="" readonly>
                     </div>
                 </div>
 
                 <div class="form-group row" dir="ltr">
-                    <label class="control-label col-sm-3 pull-left text-left">Parent :</label>
+                    <label class="control-label col-sm-3 pull-left text-left">image :</label>
                     <div class="col-sm-6 pull-left">
-                        <input type="text" class="form-control" id="childParent" name="childParent" value="{{$parentname}}" readonly>
+                        <img  id="childimg" width="60%" height="400px">
                     </div>
 
                 </div>
@@ -97,3 +107,46 @@
 
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $("#child_select").select2({
+            dropdownAutoWidth : true,
+            theme: "classic"
+        });
+
+        $('#child_select').on('change',function () {
+         var child_id = $(this).val();
+            $.ajax({
+
+                type:'get',
+                url:'{!!URL::to('getchild')!!}',
+                data:{'id':child_id},
+                success:function(data) {
+
+                    $('#ChildrenId').val(data[0].id);
+                    $('#ChildrenName').val(data[0].name);
+                    $('#Childrengender').val(data[0].gender);
+                    $('#childBirthDay').val(data[0].bdate);
+                    $('#ArravingTime').val(data[0].arrivingtime);
+                    //$('#childParent').val(data[0].id);
+                   // $('#img').val(data[0].id);
+
+                    $("#childimg").attr("src",data[0].clildimg);
+
+
+
+
+                },
+                async: false
+
+            });
+
+
+        });
+
+
+
+    });
+
+
+</script>

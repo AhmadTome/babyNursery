@@ -124,11 +124,20 @@ class EventController extends Controller
     $parentid=$parentidquery[0]->Id;
 
 
-    $user=new eventregistered;
-    $user->eventid=$eventid;
-    $user->parentid=$parentid;
-    $user->save();
+    $eventseleted = eventregistered::select('id')
+    ->where('eventid',$eventid)->where('parentid',$parentid)->take(1000)->get();
 
+
+    if(count($eventseleted) > 0){
+        eventregistered::where('eventid','=',$eventid)->where('parentid','=',$parentid)
+            ->delete();
+    }
+    else {
+        $user = new eventregistered;
+        $user->eventid = $eventid;
+        $user->parentid = $parentid;
+        $user->save();
+    }
     }
 
     public function selectregisteredEvent(Request $request){

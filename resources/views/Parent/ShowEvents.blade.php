@@ -57,7 +57,7 @@
                             </div>
                             <div class="content-title col-sm-4">
                                 <div class=" text-center" >
-                                    <input type="button"  class="btn btn-primary enroll" value="Enrollment" data-id="{{$item->ID}}">
+                                    <input type="button"  class="btn btn-primary bg-blue enroll" value="Enrollment" data-id="{{$item->ID}}">
                                 </div>
                             </div>
 
@@ -206,8 +206,9 @@ console.log("ajax")
     $(".enroll").on('click',function() {
         $(this).each(function() {
             var term = $(this).data('id');
-            $(this).val("done");
-            $(this).delay(4000).css("background-color","green");
+
+           // $(this).val("done");
+           // $(this).delay(4000).css("background-color","green");
 
             eventid=term;
 
@@ -218,6 +219,7 @@ console.log("ajax")
                 data:{'eventid':eventid},
                 success:function(data) {
 
+                    location.reload();
                 }
 
             });
