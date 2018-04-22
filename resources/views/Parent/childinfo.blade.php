@@ -80,6 +80,14 @@
                 </div>
 
                 <div class="form-group row" dir="ltr">
+                    <label class="control-label col-sm-3 pull-left text-left">Cost per Month :</label>
+
+                    <div class="col-sm-6 pull-left">
+                        <input type="number" class="form-control" id="cost" name="cost" readonly value="">
+                    </div>
+                </div>
+
+                <div class="form-group row" dir="ltr">
                     <label class="control-label col-sm-3 pull-left text-left">image :</label>
                     <div class="col-sm-6 pull-left">
                         <img  id="childimg" width="60%" height="400px">
@@ -128,6 +136,9 @@
                     $('#Childrengender').val(data[0].gender);
                     $('#childBirthDay').val(data[0].bdate);
                     $('#ArravingTime').val(data[0].arrivingtime);
+                    $('#cost').val(data[0].cost);
+
+
                     //$('#childParent').val(data[0].id);
                    // $('#img').val(data[0].id);
 

@@ -54,7 +54,7 @@ class Childrens extends Controller
         $user->bdate=Input::get('childBirthDay');
         $user->arrivingtime=Input::get('ArravingTime');
         $user->perent_id=Input::get('Parent_select');
-
+        $user->cost=Input::get('cost');
         $user->clildimg="/images/".$name;;
 
         if($user->save()){
@@ -89,7 +89,7 @@ class Childrens extends Controller
 
         child::where('id', '=', $num)
             ->update(array('id' =>Input::get('ChildrenId') , 'name'=>Input::get('ChildrenName') ,'gender'=>Input::get('genderhidden')
-            , 'bdate'=>Input::get('childBirthDay') , 'arrivingtime'=>Input::get('ArravingTime')));
+            , 'bdate'=>Input::get('childBirthDay') , 'arrivingtime'=>Input::get('ArravingTime'),'cost'=>Input::get('cost')));
         return redirect()->to('/EditChild');
 
 
@@ -122,12 +122,12 @@ class Childrens extends Controller
     }
 
     public function getinfo(Request $request){
-        $date=child::select('id','name','gender','bdate','arrivingtime','clildimg')
+        $date=child::select('id','name','gender','bdate','arrivingtime','clildimg','cost')
             ->where('id',$request->childid)->take(100)->get();
         return $date ;
     }
  public function getchild(Request $request){
-     $date=child::select('id','name','gender','bdate','arrivingtime','clildimg')
+     $date=child::select('id','name','gender','bdate','arrivingtime','clildimg','cost')
          ->where('id',$request->id)->take(100)->get();
      return $date ;
  }

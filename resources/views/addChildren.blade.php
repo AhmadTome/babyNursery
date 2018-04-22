@@ -86,6 +86,15 @@
                         <input type="date" class="form-control" id="ArravingTime" name="ArravingTime" required>
                     </div>
                 </div>
+
+                <div class="form-group row" dir="ltr">
+                    <label class="control-label col-sm-3 pull-left text-left">Cost per month :</label>
+
+                    <div class="col-sm-6 pull-left">
+                        <input type="number" class="form-control" id="cost" name="cost" required>
+                    </div>
+                </div>
+
                 <div class="form-group row" dir="ltr">
                     <label class="control-label col-sm-3 pull-left text-left">Child Image :</label>
 

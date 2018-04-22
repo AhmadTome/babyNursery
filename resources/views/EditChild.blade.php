@@ -106,6 +106,14 @@
                     </div>
                 </div>
 
+                <div class="form-group row" dir="ltr">
+                    <label class="control-label col-sm-3 pull-left text-left">Cost per Month :</label>
+
+                    <div class="col-sm-6 pull-left">
+                        <input type="number" class="form-control" id="cost" name="cost" required value="{{$child[0]->cost}}">
+                    </div>
+                </div>
+
                 <div class="form-group ">
                     <div class="col-sm-4 pull-right">
                         <input type="submit" class="btn btn-primary"  id="Edit" value="تعديل"/>
@@ -240,6 +248,8 @@
                     $('#childBirthDay').val(data[0].bdate);
                     $('#ArravingTime').val(data[0].arrivingtime);
                     $('#genderhidden').val(data[0].gender);
+                    $('#cost').val(data[0].cost);
+
 
                     var div=document.getElementById('genderselected');
                     div.innerHTML=data[0].gender;
